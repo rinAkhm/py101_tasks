@@ -7,4 +7,11 @@
 """
 
 if __name__ == '__main__':
-    pass
+    password = input(f'Для проверки необходимо ввести ваш пароль\n')
+    if len(password)>=8:
+        if password.isalnum() and password.isupper():
+            print(f'Пароль {password} сложный')
+        else:
+            print(f'Пароль {password} простой')
+        else:
+            print(f'Пароль {password} легкий')
