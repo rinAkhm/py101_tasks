@@ -13,5 +13,5 @@ if __name__ == '__main__':
             print(f'Пароль {password} сложный')
         else:
             print(f'Пароль {password} простой')
-        else:
-            print(f'Пароль {password} легкий')
+    else:
+        print(f'Пароль {password} легкий')
