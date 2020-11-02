@@ -5,47 +5,42 @@
 # напиши функцию, которая принимает на вход любое
 # количество чисел и сообщает, есть ли среди них чётное
 
-"""
-Строка проверяет список на наличие четных чисел, если True выводит сообщение, 
-что есть четные числа и наоборот если False, что нет четных чисел 
-"""
+def even_number(lines):
+    count = 0
+    for line in lines:
+        try:
+            if int(line) % 2 == 0:
+                count+=1 
+                if(count>0):
+                    return "Есть четные числа" 
+                else:
+                    return "Нет четных чисел"    
+        except ValueError:    
+            return "Нужно вводить числа"
 
-# def even_number(lines):
-#     count = 0
-#     for line in lines:
-#         try:
-#             if int(line) % 2 == 0:
-#                 count+=1 
-#                 if(count>0):
-#                     return "Есть четные числа" 
-#                 else:
-#                     return "Нет четных чисел"    
-#         except ValueError:    
-#             return "Нужно вводить числа"
-
-# line = input("Введи числа через пробел\n").split(" ")
-# print(even_number(line))
+line = input("Введи числа через пробел\n").split(" ")
+print(even_number(line))
 
 
 # используй тернарный оператор, чтобы вызвать функцию
 # если возраст больше 21 года, в противном случае верни
 # сообщение "Мы не продаём алкоголь несовершеннолетним."
 
-# age = 17 
-# print("Мы не продаём алкоголь несовершеннолетним.") if age<21 else sell_alcohol()
+age = 17 
+print("Мы не продаём алкоголь несовершеннолетним.") if age<21 else sell_alcohol()
 
 
 
 
 # напиши функцию, которая проверит, является ли строка ключевым словом в Питоне
 # тебе понадобится модуль keyword, импортируй его и изучи с помощью dir()
-# from keyword import iskeyword
+from keyword import iskeyword
 
-# def is_keyword(str):
-#     if iskeyword(str) == True:
-#         return "Ключевое"
-#     else:
-#         return "Обычное"
+def is_keyword(str):
+    if iskeyword(str) == True:
+        return "Ключевое"
+    else:
+        return "Обычное"
 
 
 
@@ -54,5 +49,14 @@
 # пример: get_type("что-то") возвращает "Это строка."
 # пример2: get_type(42) возвращает "Это словарь."
 
-# def check_type_data:
-#     pass
+def check_type_data(data):
+    switcher = {
+    'str' :  'строка',
+    'int' : 'число',
+    'None' : 'None',
+    'dict' : 'словарь',
+    'tuple' : 'кортедж',
+    'set' : 'множество',
+    'list' : 'список'
+    }
+    return f' Это {switcher[type(data).__name__]}'
