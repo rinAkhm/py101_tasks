@@ -1,7 +1,11 @@
 import sys
+<<<<<<< HEAD
 import argparse 
 import nltk
 
+=======
+import argparse
+>>>>>>> 02c80c6fa28252beee4bb9c15e6b0cb1627b4201
 
 
 """
@@ -13,6 +17,7 @@ import nltk
 """
 
 def create_parser():
+<<<<<<< HEAD
 
 #Функция считывает название файла через консоль и открывает этот файл. 
 
@@ -54,3 +59,4 @@ if __name__ == '__main__':
     for top_word in sorted(dictionary.items(), reverse=True, key=lambda parameter: parameter[1]):
     #    print(top_word)
         pass
+
