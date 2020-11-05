@@ -1,12 +1,6 @@
 import sys
-<<<<<<< HEAD
 import argparse 
 import nltk
-
-=======
-import argparse
->>>>>>> 02c80c6fa28252beee4bb9c15e6b0cb1627b4201
-
 
 """
 Программа считает Топ-100 слов для переданного ей текстого файла.
@@ -17,7 +11,6 @@ import argparse
 """
 
 def create_parser():
-<<<<<<< HEAD
 
 #Функция считывает название файла через консоль и открывает этот файл. 
 
