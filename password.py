@@ -9,9 +9,12 @@
 if __name__ == '__main__':
     password = input(f'Для проверки необходимо ввести ваш пароль\n')
     if len(password)>=8:
-        if password.isalnum() and password.isupper():
-            print(f'Пароль {password} сложный')
+        if not password.isdigit():
+            if password.isalnum():
+                print(f'Пароль {password} сложный')
+            else:
+                print(f'Пароль {password} простой')
         else:
-            print(f'Пароль {password} простой')
+            print(f'Пароль {password} легкий')
     else:
         print(f'Пароль {password} легкий')
