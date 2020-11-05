@@ -1,5 +1,7 @@
 import sys
-import argparse
+import argparse 
+import nltk
+
 
 
 """
@@ -11,16 +13,44 @@ import argparse
 """
 
 def create_parser():
+
+#Функция считывает название файла через консоль и открывает этот файл. 
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b','--book', type=argparse.FileType(), help='you need write name file',default='111.txt')
+    parser.add_argument('-b','--book', type=argparse.FileType(encoding='utf-8'), help='you need write name file', default='book1.txt')
     return parser
 
+def create_clean_list(text):
+
+#Функция разбирает текст на слова, избавляет текст от символов и цифр, после сохраняет его в список. 
+
+    list_without_symbols = []
+    for word in text.lower().split():
+        symbols = '-!@#№$<>%^"\'*.()_+="№;:,?'
+        for symbol in range(0,len(symbols)):
+            word = word.replace(symbols[symbol],"")
+        if word.isalpha():
+            list_without_symbols.append(word)
+    return list_without_symbols
+ 
+
+
+
 if __name__ == '__main__':
-#position argument
     word_list = []
+    dictionary = {}
     parser = create_parser()
-    namespace = parser.parse_args(sys.argv[1:])
-    text = namespace.book.read()
-    for each_word in text.split():
-        word_list.append(each_word)
-        print(each_word)
+    namespace = parser.parse_args(sys.args[1:])
+    text = namespace.book.readline()
+    # stop_words = set(stopwords.words ("english"))
+    # words = word_tokenize(example_sentence)
+    print(stop_words)
+    #добавляем слова в словарь
+    for word_dictionary in create_clean_list(text): 
+        dictionary.setdefault (word_dictionary, 0)
+        dictionary[word_dictionary] +=1
+
+    #сортировка словаря и его печать 
+    for top_word in sorted(dictionary.items(), reverse=True, key=lambda parameter: parameter[1]):
+    #    print(top_word)
+        pass
