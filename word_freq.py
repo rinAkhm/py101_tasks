@@ -1,6 +1,7 @@
 import sys
 import argparse 
 from nltk.corpus import stopwords
+import collections
 
 
 """
@@ -22,8 +23,10 @@ def exclude_stop_words(text):
 
 def create_parser():
 #Функция считывает название файла через консоль и открывает этот файл. 
+#второй параметор позволяет выбрать количество чисел для считывания
     parser = argparse.ArgumentParser()
-    parser.add_argument('-b','--book', type=argparse.FileType(encoding='utf-8'), help='you need write name file', default='book1.txt')
+    parser.add_argument('-b','--book', type=argparse.FileType(encoding='utf-8'), help='you need write name file', default='book.txt')
+    parser.add_argument ('count', nargs='?', type = int, default=100)
     return parser
 
 def create_clean_list(text):
@@ -42,17 +45,16 @@ if __name__ == '__main__':
     word_list = []
     dictionary = {}
     parser = create_parser()
-    namespace = parser.parse_args()
-    text = namespace.book.readline()
+    namespace = parser.parse_args(sys.argv[1:])
+    text = " ".join(namespace.book.readlines())
+    count = namespace.count
 
-    #добавляем слова в словарь
+#добавляем слова в словарь 
     for word_dictionary in exclude_stop_words(create_clean_list(text)): 
         dictionary.setdefault (word_dictionary, 0)
         dictionary[word_dictionary] +=1
 
-    #сортировка словаря и его печать 
-    for top_word in sorted(dictionary.items(), reverse=True, key=lambda parameter: parameter[1]):
-        print(top_word)
-
-        
-
+#сортируем словарь и выводим в принт
+    top_word = collections.Counter(dictionary).most_common(count)
+    print(top_word)
+ 
